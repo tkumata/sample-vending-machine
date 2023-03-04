@@ -27,7 +27,7 @@ class Controller
      * getMenusCost
      * 注文から費用を取得する。
      */
-    public function getMenusCost($menu): int
+    public function getMenusCost(string $menu): int
     {
         $menusCost = [
             'cola' => 120,
@@ -41,7 +41,7 @@ class Controller
      * getChange
      * お釣りの具体値を取得する。
      */
-    public function getChange($cost, $money): string
+    public function getChange(int $cost, int $money): string
     {
         if ($cost > $money) {
             throw ("金額不足\n");
@@ -55,7 +55,7 @@ class Controller
      * calcChange
      * お釣りの具体値を計算する。
      */
-    public function calcChange($totalChange): string
+    public function calcChange(int $totalChange): string
     {
         if ($totalChange == 0) {
             return 'nochange';
