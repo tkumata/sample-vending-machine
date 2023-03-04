@@ -14,23 +14,29 @@ class MainTest extends TestCase
     public const NO_CHANGE = 'nochange'; // おつりなし
 
     // 120円支払ってコーラを買う
-    public const INPUT_A = ['coins' => [
-      '100' => 1,
-      '10' => 2,
-    ],
-    'menu' => MainTest::COLA];
+    public const INPUT_A = [
+        'coins' => [
+            '100' => 1,
+            '10' => 2,
+        ],
+        'menu' => MainTest::COLA
+    ];
 
     // 200円支払ってコーヒーを買う
-    public const INPUT_B = ['coins' => [
-      '100' => 2,
-    ],
-    'menu' => MainTest::COFFEE];
+    public const INPUT_B = [
+        'coins' => [
+            '100' => 2,
+        ],
+        'menu' => MainTest::COFFEE
+    ];
 
     // 1000円支払ってエナジードリンクを買う
-    public const INPUT_C = ['coins' => [
-      '1000' => 1,
-    ],
-    'menu' => MainTest::ENERGY_DRINK];
+    public const INPUT_C = [
+        'coins' => [
+            '1000' => 1,
+        ],
+        'menu' => MainTest::ENERGY_DRINK
+    ];
 
     // ほぼ無限に硬貨が補充されている
     public const VENDING_MACHINE_COINS_INF = [
@@ -38,7 +44,7 @@ class MainTest extends TestCase
         '100' => 999,
         '50' => 999,
         '10' => 999,
-      ];
+    ];
 
     /**
      * @group round1
@@ -58,9 +64,21 @@ class MainTest extends TestCase
     {
         // $coins, $menu, $expectedChange
         return [
-            "120円支払ってコーラを買う" => [MainTest::INPUT_A["coins"], MainTest::INPUT_A["menu"], MainTest::NO_CHANGE],
-            "200円支払ってコーヒーを買う" => [MainTest::INPUT_B["coins"], MainTest::INPUT_B["menu"], "50 1"],
-            "1000円支払ってエナジードリンクを買う" => [MainTest::INPUT_C["coins"], MainTest::INPUT_C["menu"], "500 1 100 2 50 1 10 4"],
+            "120円支払ってコーラを買う" => [
+                MainTest::INPUT_A["coins"],
+                MainTest::INPUT_A["menu"],
+                MainTest::NO_CHANGE
+            ],
+            "200円支払ってコーヒーを買う" => [
+                MainTest::INPUT_B["coins"],
+                MainTest::INPUT_B["menu"],
+                "50 1"
+            ],
+            "1000円支払ってエナジードリンクを買う" => [
+                MainTest::INPUT_C["coins"],
+                MainTest::INPUT_C["menu"],
+                "500 1 100 2 50 1 10 4"
+            ],
             // テストケース追加のPR募集中
         ];
     }
