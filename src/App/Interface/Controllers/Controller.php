@@ -10,6 +10,10 @@ class Controller
     {
     }
 
+    /**
+     * getTotalMoney
+     * 所持金の合計を計算する。
+     */
     public function getTotalMoney(array $coins): int
     {
         $total = 0;
@@ -19,6 +23,10 @@ class Controller
         return $total;
     }
 
+    /**
+     * getMenusCost
+     * 注文から費用を取得する。
+     */
     public function getMenusCost($menu): int
     {
         $menusCost = [
@@ -29,6 +37,10 @@ class Controller
         return $menusCost[$menu];
     }
 
+    /**
+     * getChange
+     * お釣りの具体値を取得する。
+     */
     public function getChange($cost, $money): string
     {
         if ($cost > $money) {
@@ -39,6 +51,10 @@ class Controller
         return $this->calcChange($totalChange);
     }
 
+    /**
+     * calcChange
+     * お釣りの具体値を計算する。
+     */
     public function calcChange($totalChange): string
     {
         if ($totalChange == 0) {
