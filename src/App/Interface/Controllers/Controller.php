@@ -76,13 +76,17 @@ class Controller
         $changes = [];
 
         foreach ($this->changeCoinTypes as $changeCoinType) {
-            if ($totalChange < $changeCoinType) continue;
+            if ($totalChange < $changeCoinType) {
+                continue;
+            }
 
             $numCoin = floor($totalChange / $changeCoinType);
             $changes[] = "$changeCoinType $numCoin";
             $totalChange = $totalChange % $changeCoinType;
 
-            if ($totalChange == 0) break;
+            if ($totalChange == 0) {
+                break;
+            }
         }
 
         return join(' ', $changes);
