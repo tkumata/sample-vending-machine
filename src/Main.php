@@ -24,9 +24,9 @@ class Main
     public static function runSimply(array $coins, string $menu): string
     {
         try {
-            $controller = new Controller;
-            $menuCost = $controller->getMenusCost($menu);
-            $totalMoney = $controller->getTotalMoney($coins);
+            $controller = new Controller($coins, $menu);
+            $menuCost = $controller->getMenusCost();
+            $totalMoney = $controller->getTotalMoney();
 
             return $controller->getChange($menuCost, $totalMoney);
         } catch (Exception $e) {

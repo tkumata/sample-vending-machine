@@ -6,18 +6,36 @@ require_once(__DIR__ . "/../../../../vendor/autoload.php");
 
 class Controller
 {
-    public function __construct()
+    private array $coins;
+    private string $menu;
+
+    private array $menusCost = [
+        'cola' => 120,
+        'coffee' => 150,
+        'energy_drink' => 210
+    ];
+
+    private array $changeCoinTypes = [
+        500,
+        100,
+        50,
+        10
+    ];
+
+    public function __construct($coins, $menu)
     {
+        $this->menu = $menu;
+        $this->coins = $coins;
     }
 
     /**
      * getTotalMoney
-     * 所持金の合計を計算する。
+     * 所持金の合計を返す。
      */
-    public function getTotalMoney(array $coins): int
+    public function getTotalMoney(): int
     {
         $total = 0;
-        foreach ($coins as $key => $value) {
+        foreach ($this->coins as $key => $value) {
             $total = $total + ($key * $value);
         }
         return $total;
@@ -25,16 +43,11 @@ class Controller
 
     /**
      * getMenusCost
-     * 注文から費用を取得する。
+     * 品名から価格を返す。
      */
-    public function getMenusCost(string $menu): int
+    public function getMenusCost(): int
     {
-        $menusCost = [
-            'cola' => 120,
-            'coffee' => 150,
-            'energy_drink' => 210
-        ];
-        return $menusCost[$menu];
+        return $this->menusCost[$this->menu];
     }
 
     /**
@@ -46,7 +59,6 @@ class Controller
         if ($cost > $money) {
             throw ("金額不足\n");
         }
-
         $totalChange = $money - $cost;
         return $this->calcChange($totalChange);
     }
@@ -61,16 +73,9 @@ class Controller
             return 'nochange';
         }
 
-        $changeCoinTypes = [
-            500,
-            100,
-            50,
-            10
-        ];
-
         $changes = [];
 
-        foreach ($changeCoinTypes as $changeCoinType) {
+        foreach ($this->changeCoinTypes as $changeCoinType) {
             if ($totalChange < $changeCoinType) continue;
 
             $numCoin = floor($totalChange / $changeCoinType);
