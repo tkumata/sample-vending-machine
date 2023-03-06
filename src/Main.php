@@ -25,10 +25,7 @@ class Main
     {
         try {
             $controller = new Controller($coins, $menu);
-            $menuCost = $controller->getMenusCost();
-            $totalMoney = $controller->getTotalMoney();
-
-            return $controller->getChange($menuCost, $totalMoney);
+            return $controller->getChange();
         } catch (Exception $e) {
             echo $e->getMessage() . "\n";
             exit;

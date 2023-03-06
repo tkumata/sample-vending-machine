@@ -15,7 +15,7 @@ class Controller
         'energy_drink' => 210
     ];
 
-    private array $changeCoinTypes = [
+    private array $coinTypes = [
         500,
         100,
         50,
@@ -32,7 +32,7 @@ class Controller
      * getTotalMoney
      * 所持金の合計を返す。
      */
-    public function getTotalMoney(): int
+    private function getTotalMoney(): int
     {
         $total = 0;
         foreach ($this->coins as $key => $value) {
@@ -45,7 +45,7 @@ class Controller
      * getMenusCost
      * 品名から価格を返す。
      */
-    public function getMenusCost(): int
+    private function getMenusCost(): int
     {
         return $this->menusCost[$this->menu];
     }
@@ -54,12 +54,12 @@ class Controller
      * getChange
      * お釣りの具体値を取得する。
      */
-    public function getChange(int $cost, int $money): string
+    public function getChange(): string
     {
-        if ($cost > $money) {
+        if ($this->getMenusCost() > $this->getTotalMoney()) {
             throw ("金額不足\n");
         }
-        $totalChange = $money - $cost;
+        $totalChange = $this->getTotalMoney() - $this->getMenusCost();
         return $this->calcChange($totalChange);
     }
 
@@ -67,7 +67,7 @@ class Controller
      * calcChange
      * お釣りの具体値を計算する。
      */
-    public function calcChange(int $totalChange): string
+    private function calcChange(int $totalChange): string
     {
         if ($totalChange == 0) {
             return 'nochange';
@@ -75,7 +75,7 @@ class Controller
 
         $changes = [];
 
-        foreach ($this->changeCoinTypes as $changeCoinType) {
+        foreach ($this->coinTypes as $changeCoinType) {
             if ($totalChange < $changeCoinType) {
                 continue;
             }
