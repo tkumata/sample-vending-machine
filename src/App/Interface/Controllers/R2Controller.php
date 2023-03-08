@@ -7,7 +7,6 @@ require_once(__DIR__ . "/../../../../vendor/autoload.php");
 class R2Controller
 {
     private array $vendingMachineCoins;
-    private array $userInput;
     private array $coins;
     private string $menu;
 
@@ -15,13 +14,6 @@ class R2Controller
         'cola' => 120,
         'coffee' => 150,
         'energy_drink' => 210
-    ];
-
-    private array $coinTypes = [
-        500,
-        100,
-        50,
-        10
     ];
 
     public function __construct($vendingMachineCoins, $userInput)
@@ -64,46 +56,6 @@ class R2Controller
         }
         $totalChange = $this->getTotalMoney() - $this->getMenusCost();
         return $this->normalizeChange($totalChange);
-    }
-
-    /**
-     * calcChange
-     * お釣りの具体値を計算する。
-     */
-    private function calcChange(int $totalChange): string
-    {
-        if ($totalChange == 0) {
-            return 'nochange';
-        }
-
-        $changes = [];
-
-        foreach ($this->coinTypes as $changeCoinType) {
-            if ($totalChange < $changeCoinType) {
-                continue;
-            }
-
-            $numCoin = floor($totalChange / $changeCoinType);
-            $changes[] = "$changeCoinType $numCoin";
-            $totalChange = $totalChange % $changeCoinType;
-
-            if ($totalChange == 0) {
-                break;
-            }
-        }
-
-        return join(' ', $changes);
-    }
-
-    private function makePool($coinTypes, $vendingMachineCoins): array
-    {
-        $arr = [];
-        $i = 0;
-        foreach($coinTypes as $type) {
-            $arr[$type] = $vendingMachineCoins[$i];
-            $i++;
-        }
-        return $arr;
     }
 
     /**

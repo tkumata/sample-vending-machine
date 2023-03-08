@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once(__DIR__ . "/../vendor/autoload.php");
 
-use src\App\Interface\Controllers\Controller;
+use src\App\Interface\Controllers\R1Controller;
 use src\App\Interface\Controllers\R2Controller;
 
 /**
@@ -25,7 +25,7 @@ class Main
     public static function runSimply(array $coins, string $menu): string
     {
         try {
-            $controller = new Controller($coins, $menu);
+            $controller = new R1Controller($coins, $menu);
             return $controller->getChange();
         } catch (Exception $e) {
             echo $e->getMessage() . "\n";

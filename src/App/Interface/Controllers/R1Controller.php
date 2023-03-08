@@ -4,7 +4,7 @@ namespace src\App\Interface\Controllers;
 
 require_once(__DIR__ . "/../../../../vendor/autoload.php");
 
-class Controller
+class R1Controller
 {
     private array $coins;
     private string $menu;
