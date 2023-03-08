@@ -69,9 +69,6 @@ class R2Controller
             if ($coinNum == 0) {
                 continue;
             }
-            if ($totalChange > $coinType*$coinNum) {
-                continue;
-            }
             if ($totalChange < $coinType) {
                 continue;
             }
