@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once(__DIR__ . "/../vendor/autoload.php");
 
 use src\App\Interface\Controllers\Controller;
+use src\App\Interface\Controllers\R2Controller;
 
 /**
  * メインクラス。
@@ -43,6 +44,12 @@ class Main
      */
     public static function run(array $vendingMachineCoins, array $userInput): string
     {
-        return "do implementation";
+        try {
+            $controller = new R2Controller($vendingMachineCoins, $userInput);
+            return $controller->getChange();
+        }  catch (Exception $e) {
+            echo $e->getMessage() . "\n";
+            exit;
+        }
     }
 }
