@@ -45,8 +45,8 @@ class Main
     public static function run(array $vendingMachineCoins, array $userInput): string
     {
         try {
-            $controller = new R2Controller($vendingMachineCoins, $userInput);
-            return $controller->getChange();
+            $controller = new R2Controller;
+            return $controller->getChange($vendingMachineCoins, $userInput);
         }  catch (Exception $e) {
             echo $e->getMessage() . "\n";
             exit;
