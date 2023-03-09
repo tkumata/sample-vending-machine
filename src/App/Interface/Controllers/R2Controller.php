@@ -17,6 +17,7 @@ class R2Controller
         try {
             $inputData = new R2InputData($vendingMachineCoins, $userInput);
             $usecase = new R2UseCaseImplements;
+
             return $usecase->normalizeChange($inputData);
         } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
