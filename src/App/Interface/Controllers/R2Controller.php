@@ -14,8 +14,13 @@ class R2Controller
 
     public function getChange($vendingMachineCoins, $userInput): string
     {
-        $inputData = new R2InputData($vendingMachineCoins, $userInput);
-        $usecase = new R2UseCaseImplements;
-        return $usecase->normalizeChange($inputData);
+        try {
+            $inputData = new R2InputData($vendingMachineCoins, $userInput);
+            $usecase = new R2UseCaseImplements;
+            return $usecase->normalizeChange($inputData);
+        } catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+            exit;
+        }
     }
 }
