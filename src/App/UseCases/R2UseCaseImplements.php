@@ -16,29 +16,33 @@ class R2UseCaseImplements implements R2UseCase
 
         $totalChange = $totalMoney - $menusCost;
 
-        foreach ($r2InputData->getVendingMachineCoins() as $coinType => $coinNum) {
-            if ($coinNum == 0) {
+        foreach ($r2InputData->getVendingMachineCoins() as $coinType => $coinStock) {
+            if ($coinStock == 0) {
                 continue;
             }
             if ($totalChange < $coinType) {
                 continue;
             }
 
-            $numCoin = floor($totalChange / $coinType);
+            $numCoinType = floor($totalChange / $coinType);
 
             $diff = 0;
 
-            if ($numCoin > $coinNum) {
-                $diff = ($numCoin - $coinNum) * $coinType;
-                $numCoin = $coinNum;
+            if ($numCoinType > $coinStock) {
+                $diff = ($numCoinType - $coinStock) * $coinType;
+                $numCoinType = $coinStock;
             }
 
-            $changes[] = "$coinType $numCoin";
+            $changes[] = "$coinType $numCoinType";
             $totalChange = ($totalChange % $coinType) + $diff;
 
             if ($totalChange == 0) {
                 break;
             }
+        }
+
+        if ($totalChange != 0) {
+            throw ("おつり不足\n");
         }
 
         return join(' ', $changes);
