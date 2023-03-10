@@ -25,8 +25,16 @@ class R2UseCaseImplements implements R2UseCase
             }
 
             $numCoin = floor($totalChange / $coinType);
+
+            $diff = 0;
+
+            if ($numCoin > $coinNum) {
+                $diff = ($numCoin - $coinNum) * $coinType;
+                $numCoin = $coinNum;
+            }
+
             $changes[] = "$coinType $numCoin";
-            $totalChange = $totalChange % $coinType;
+            $totalChange = ($totalChange % $coinType) + $diff;
 
             if ($totalChange == 0) {
                 break;

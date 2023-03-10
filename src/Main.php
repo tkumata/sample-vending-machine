@@ -27,7 +27,7 @@ class Main
         try {
             $controller = new R1Controller($coins, $menu);
             return $controller->getChange();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
             exit;
         }
@@ -44,12 +44,7 @@ class Main
      */
     public static function run(array $vendingMachineCoins, array $userInput): string
     {
-        try {
-            $controller = new R2Controller;
-            return $controller->getChange($vendingMachineCoins, $userInput);
-        }  catch (Exception $e) {
-            echo $e->getMessage() . "\n";
-            exit;
-        }
+        $controller = new R2Controller;
+        return $controller->getChange($vendingMachineCoins, $userInput);
     }
 }

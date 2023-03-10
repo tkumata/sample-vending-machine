@@ -112,12 +112,31 @@ class MainTest extends TestCase
             ],
             "menu" => MainTest::COLA,
         ];
+        $vendingMachineCoins_scenario4 = [
+            '500' => 999,
+            '100' => 1,
+            '50' => 1,
+            '10' => 999,
+        ];
         return [
-            "制約なくおつりが払える" => [MainTest::VENDING_MACHINE_COINS_INF, MainTest::INPUT_C, "500 1 100 2 50 1 10 4"],
-            "50円玉が切れている場合10円玉でおつりを払う" => [$vendingMachineCoins_scenario2, MainTest::INPUT_B, "10 5"],
+            "制約なくおつりが払える" => [
+                MainTest::VENDING_MACHINE_COINS_INF,
+                MainTest::INPUT_C,
+                "500 1 100 2 50 1 10 4"
+            ],
+            "50円玉が切れている場合10円玉でおつりを払う" => [
+                $vendingMachineCoins_scenario2,
+                MainTest::INPUT_B,
+                "10 5"
+            ],
             // 応用なのでコメントアウト。こういうドメイン知識もきっとあるだろう
             // "両替目的の購入に応じない" => [MainTest::VENDING_MACHINE_COINS_INF, $userInput_scenario3, "10 8"],
             // テストケース追加のPR募集中
+            "おつりが半端に残っている状態の時" => [
+                $vendingMachineCoins_scenario4,
+                MainTest::INPUT_C,
+                "500 1 100 1 50 1 10 14"
+            ],
         ];
     }
 }
