@@ -25,7 +25,6 @@ class R2UseCaseImplements implements R2UseCase
             }
 
             $numCoinType = floor($totalChange / $coinType);
-
             $diff = 0;
 
             if ($numCoinType > $coinStock) {

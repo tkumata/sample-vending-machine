@@ -115,7 +115,19 @@ class MainTest extends TestCase
         $vendingMachineCoins_scenario4 = [
             '500' => 999,
             '100' => 1,
+            '50' => 0,
+            '10' => 999,
+        ];
+        $vendingMachineCoins_scenario5 = [
+            '500' => 999,
+            '100' => 1,
             '50' => 1,
+            '10' => 999,
+        ];
+        $vendingMachineCoins_scenario6 = [
+            '500' => 999,
+            '100' => 0,
+            '50' => 0,
             '10' => 999,
         ];
         return [
@@ -132,10 +144,20 @@ class MainTest extends TestCase
             // 応用なのでコメントアウト。こういうドメイン知識もきっとあるだろう
             // "両替目的の購入に応じない" => [MainTest::VENDING_MACHINE_COINS_INF, $userInput_scenario3, "10 8"],
             // テストケース追加のPR募集中
-            "おつりが半端に残っている状態の時" => [
+            "おつりが半端に残っている状態の時1" => [
                 $vendingMachineCoins_scenario4,
                 MainTest::INPUT_C,
+                "500 1 100 1 10 19"
+            ],
+            "おつりが半端に残っている状態の時2" => [
+                $vendingMachineCoins_scenario5,
+                MainTest::INPUT_C,
                 "500 1 100 1 50 1 10 14"
+            ],
+            "おつりが半端に残っている状態の時3" => [
+                $vendingMachineCoins_scenario6,
+                MainTest::INPUT_C,
+                "500 1 10 29"
             ],
         ];
     }
