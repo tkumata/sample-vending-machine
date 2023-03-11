@@ -142,7 +142,11 @@ class MainTest extends TestCase
                 "10 5"
             ],
             // 応用なのでコメントアウト。こういうドメイン知識もきっとあるだろう
-            // "両替目的の購入に応じない" => [MainTest::VENDING_MACHINE_COINS_INF, $userInput_scenario3, "10 8"],
+            // "両替目的の購入に応じない" => [
+            //     MainTest::VENDING_MACHINE_COINS_INF,
+            //     $userInput_scenario3,
+            //     "10 8"
+            // ],
             // テストケース追加のPR募集中
             "おつりが半端に残っている状態の時1" => [
                 $vendingMachineCoins_scenario4,

@@ -1,9 +1,11 @@
 <?php
 namespace src\App\UseCases;
 
+use Exception;
+
 class R2UseCaseImplements implements R2UseCase
 {
-    public function normalizeChange(R2InputData $r2InputData):string
+    public function normalizeChange(R2InputData $r2InputData): string
     {
         $changes = [];
 
@@ -11,7 +13,7 @@ class R2UseCaseImplements implements R2UseCase
         $totalMoney = $r2InputData->getTotalMoney();
 
         if ($menusCost > $totalMoney) {
-            throw ("金額不足\n");
+            throw new Exception("金額不足\n");
         }
 
         $totalChange = $totalMoney - $menusCost;
@@ -41,7 +43,7 @@ class R2UseCaseImplements implements R2UseCase
         }
 
         if ($totalChange != 0) {
-            throw ("おつり不足\n");
+            throw new Exception("おつり不足\n");
         }
 
         return join(' ', $changes);
