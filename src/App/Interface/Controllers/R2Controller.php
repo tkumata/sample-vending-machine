@@ -3,6 +3,7 @@ namespace src\App\Interface\Controllers;
 
 require_once(__DIR__ . "/../../../../vendor/autoload.php");
 
+use Exception;
 use src\App\UseCases\R2InputData;
 use src\App\UseCases\R2UseCaseImplements;
 
@@ -17,9 +18,8 @@ class R2Controller
         try {
             $inputData = new R2InputData($vendingMachineCoins, $userInput);
             $usecase = new R2UseCaseImplements;
-
             return $usecase->normalizeChange($inputData);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo $e->getMessage() . "\n";
             exit;
         }

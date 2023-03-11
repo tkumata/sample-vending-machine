@@ -24,13 +24,8 @@ class Main
      */
     public static function runSimply(array $coins, string $menu): string
     {
-        try {
-            $controller = new R1Controller($coins, $menu);
-            return $controller->getChange();
-        } catch (\Exception $e) {
-            echo $e->getMessage() . "\n";
-            exit;
-        }
+        $controller = new R1Controller;
+        return $controller->getChange($coins, $menu);
     }
 
     /**
