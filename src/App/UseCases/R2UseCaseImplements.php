@@ -18,6 +18,10 @@ class R2UseCaseImplements implements R2UseCase
 
         $totalChange = $totalMoney - $menusCost;
 
+        if ($totalChange == 0) {
+            return 'nochange';
+        }
+
         foreach ($r2InputData->getVendingMachineCoins() as $coinType => $coinStock) {
             if ($coinStock == 0) {
                 continue;
@@ -41,11 +45,12 @@ class R2UseCaseImplements implements R2UseCase
                 break;
             }
         }
+        $change = join(' ', $changes);
 
         if ($totalChange != 0) {
-            throw new Exception("おつり不足\n");
+            $change = 'shortage';
         }
 
-        return join(' ', $changes);
+        return $change;
     }
 }

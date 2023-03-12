@@ -130,6 +130,12 @@ class MainTest extends TestCase
             '50' => 0,
             '10' => 999,
         ];
+        $vendingMachineCoins_scenario7 = [
+            '500' => 999,
+            '100' => 1,
+            '50' => 0,
+            '10' => 9,
+        ];
         return [
             "制約なくおつりが払える" => [
                 MainTest::VENDING_MACHINE_COINS_INF,
@@ -162,6 +168,16 @@ class MainTest extends TestCase
                 $vendingMachineCoins_scenario6,
                 MainTest::INPUT_C,
                 "500 1 10 29"
+            ],
+            "おつりが出せない場合" => [
+                $vendingMachineCoins_scenario7,
+                MainTest::INPUT_C,
+                "shortage"
+            ],
+            "おつりピッタリ" => [
+                $vendingMachineCoins_scenario4,
+                MainTest::INPUT_A,
+                "nochange"
             ],
         ];
     }
