@@ -26,6 +26,7 @@ class R2UseCaseImplements implements R2UseCase
             if ($coinStock == 0) {
                 continue;
             }
+
             if ($totalChange < $coinType) {
                 continue;
             }
@@ -45,6 +46,7 @@ class R2UseCaseImplements implements R2UseCase
                 break;
             }
         }
+
         $change = join(' ', $changes);
 
         if ($totalChange != 0) {
