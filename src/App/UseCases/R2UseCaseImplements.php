@@ -32,15 +32,15 @@ class R2UseCaseImplements implements R2UseCase
             }
 
             $numCoinType = floor($totalChange / $coinType);
-            $diff = 0;
+            $changeCarryOver = 0;
 
             if ($numCoinType > $coinStock) {
-                $diff = ($numCoinType - $coinStock) * $coinType;
+                $changeCarryOver = ($numCoinType - $coinStock) * $coinType;
                 $numCoinType = $coinStock;
             }
 
             $changes[] = "$coinType $numCoinType";
-            $totalChange = ($totalChange % $coinType) + $diff;
+            $totalChange = ($totalChange % $coinType) + $changeCarryOver;
 
             if ($totalChange == 0) {
                 break;
